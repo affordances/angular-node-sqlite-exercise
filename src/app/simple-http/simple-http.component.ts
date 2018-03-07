@@ -8,7 +8,6 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 })
 export class SimpleHttpComponent implements OnInit {
   data: Object;
-  loading: boolean;
 
   constructor(private http: HttpClient) {
   }
@@ -17,11 +16,9 @@ export class SimpleHttpComponent implements OnInit {
   }
 
   makeRequest(): void {
-    this.loading = true;
     this.http.get('http://localhost:3001/messages')
     .subscribe(data => {
       this.data = data;
-      this.loading = false;
     });
   }
 }
