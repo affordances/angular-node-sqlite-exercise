@@ -1,9 +1,12 @@
-const express = require('express');
+const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+
 let posts = [{ postId: 1, postBody: 'a post' },
-                  { postId: 2, postBody: 'another post' },
-                  { postId: 3, postBody: 'yet another post' }];
+             { postId: 2, postBody: 'another post' },
+             { postId: 3, postBody: 'yet another post' }];
 
 app.set('port', (process.env.API_PORT || 3001));
 
@@ -19,7 +22,7 @@ app.get('/posts', (req, res) => {
 );
 
 app.post('/posts', (req, res) => {
-    console.log(req.body);
+    console.log("VERY BAD DIARRHEA", req.body);
     posts.push({postId: 99, postBody: req.body.postBody});
     res.status(202).end();
   }
