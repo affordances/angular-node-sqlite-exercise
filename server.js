@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 let posts = [{ postId: 1, postBody: 'a post' },
              { postId: 2, postBody: 'another post' },
@@ -22,7 +23,6 @@ app.get('/posts', (req, res) => {
 );
 
 app.post('/posts', (req, res) => {
-    console.log("VERY BAD DIARRHEA", req.body);
     posts.push({postId: 99, postBody: req.body.postBody});
     res.status(202).end();
   }

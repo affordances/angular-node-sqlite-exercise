@@ -5,13 +5,11 @@ import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import { SimpleHttpComponent } from './simple-http/simple-http.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SimpleHttpComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
