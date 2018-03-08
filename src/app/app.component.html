@@ -1,1 +1,9 @@
-<app-simple-http></app-simple-http>
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <div>
+    <label for="newPost">New post</label>
+    <input type="text"
+           name="newPost" ngModel>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+<div *ngFor="let post of posts">{{post.postBody}}</div>

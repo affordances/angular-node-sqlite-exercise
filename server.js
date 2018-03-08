@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 
-const messages = [{ messageId: 1, messageBody: 'a message' },
-                  { messageId: 2, messageBody: 'another message' },
-                  { messageId: 3, messageBody: 'yet another message' }];
+let posts = [{ postId: 1, postBody: 'a post' },
+                  { postId: 2, postBody: 'another post' },
+                  { postId: 3, postBody: 'yet another post' }];
 
 app.set('port', (process.env.API_PORT || 3001));
 
@@ -13,8 +13,15 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/messages', (req, res) => {
-    res.json({ messages: messages });
+app.get('/posts', (req, res) => {
+    res.json({ posts: posts });
+  }
+);
+
+app.post('/posts', (req, res) => {
+    console.log(req.body);
+    posts.push({postId: 99, postBody: req.body.postBody});
+    res.status(202).end();
   }
 );
 
