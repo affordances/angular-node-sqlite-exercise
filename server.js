@@ -5,9 +5,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-let posts = [{ postId: 1, postBody: 'a post' },
-             { postId: 2, postBody: 'another post' },
-             { postId: 3, postBody: 'yet another post' }];
+let posts = [];
 
 app.set('port', (process.env.API_PORT || 3001));
 
@@ -23,7 +21,7 @@ app.get('/posts', (req, res) => {
 );
 
 app.post('/posts', (req, res) => {
-    posts.push({postId: 99, postBody: req.body.postBody});
+    posts.push({timestamp: new Date(), postBody: req.body.postBody});
     res.status(202).end();
   }
 );

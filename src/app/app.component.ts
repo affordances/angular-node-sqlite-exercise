@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, Response} from '@angular/http';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormsModule, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -33,5 +34,7 @@ export class AppComponent {
     .subscribe((res: Response) => {
      this.ngOnInit();
     })
+
+    form.value = '';
   }
 }
