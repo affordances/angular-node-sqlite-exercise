@@ -11,6 +11,7 @@ app.set('port', (process.env.API_PORT || 3001));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "DELETE");
   next();
 });
 
@@ -35,10 +36,11 @@ app.post('/posts', (req, res) => {
   }
 );
 
-app.delete('/posts', (req, res) => {
-  knex('accounts')
-  .where('activated', false)
-  .del()
+app.delete('/posts/:id', (req, res) => {
+  knex('posts').where('id', req.params.id).del()
+    .then(() => {
+      res.status(202).end();
+    });
   }
 );
 

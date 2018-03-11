@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule, FormControl } from '@angular/forms';
@@ -15,10 +15,16 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    setInterval(this.refreshPosts(), 500)
+  }
+
+  refreshPosts() {
     this.http.get('http://localhost:3001/posts')
     .subscribe((data: any) => {
+      console.log("current posts", data.posts);
       this.posts = data.posts;
     });
+    console.log("refreshing...");
   }
 
   onSubmit(form: any, realForm: any): void {
@@ -36,7 +42,7 @@ export class AppComponent {
       text: form.newPost
     }), httpOptions)
     .subscribe((res: Response) => {
-     this.ngOnInit();
+     this.refreshPosts();
     })
 
     realForm.form.reset();
