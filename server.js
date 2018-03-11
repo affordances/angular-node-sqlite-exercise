@@ -1,11 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const knex = require('./db.js');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-let posts = [];
 
 app.set('port', (process.env.API_PORT || 3001));
 
@@ -16,13 +15,23 @@ app.use(function(req, res, next) {
 });
 
 app.get('/posts', (req, res) => {
-    res.json({ posts: posts });
+  knex('posts').select('*')
+    .then(posts => {
+      res.json({ posts: posts });
+    });
   }
 );
 
 app.post('/posts', (req, res) => {
-    posts.push({timestamp: new Date(), postBody: req.body.postBody});
-    res.status(202).end();
+  if (!req.body.text) {
+    res.status(500).send('Something broke!');
+    return;
+  }
+
+  knex('posts').insert({ text: req.body.text })
+    .then(() => {
+      res.status(202).end();
+    });
   }
 );
 

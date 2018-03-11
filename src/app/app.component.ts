@@ -21,7 +21,11 @@ export class AppComponent {
     });
   }
 
-  onSubmit(form: any): void {
+  onSubmit(form: any, realForm: any): void {
+    if (!form.newPost) {
+      return;
+    }
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -29,12 +33,12 @@ export class AppComponent {
 
     this.http.post('http://localhost:3001/posts',
     JSON.stringify({
-      postBody: form.newPost
+      text: form.newPost
     }), httpOptions)
     .subscribe((res: Response) => {
      this.ngOnInit();
     })
 
-    form.value = '';
+    realForm.form.reset();
   }
 }

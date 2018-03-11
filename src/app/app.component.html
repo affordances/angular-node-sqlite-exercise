@@ -1,8 +1,9 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+<form #form="ngForm" (ngSubmit)="onSubmit(form.value, form)">
   <div>
-    <label for="newPost">New post</label>
     <input type="text"
-           name="newPost" ngModel>
+           placeholder="New post"
+           name="newPost"
+           ngModel>
   </div>
   <button type="submit">Submit</button>
 </form>
