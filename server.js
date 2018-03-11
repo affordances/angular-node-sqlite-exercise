@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/posts', (req, res) => {
-  knex('posts').select('*')
+  knex('posts').select('*').orderBy('created_at', 'desc')
     .then(posts => {
       res.json({ posts: posts });
     });
@@ -34,6 +34,14 @@ app.post('/posts', (req, res) => {
     });
   }
 );
+
+app.delete('/posts', (req, res) => {
+  knex('accounts')
+  .where('activated', false)
+  .del()
+  }
+);
+
 
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`);

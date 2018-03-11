@@ -1,9 +1,11 @@
 <form #form="ngForm" (ngSubmit)="onSubmit(form.value, form)">
   <div>
-    <input type="text"
-           placeholder="New post"
-           name="newPost"
-           ngModel>
+    <textarea type="text"
+              placeholder="New post"
+              name="newPost"
+              autocomplete="off"
+              ngModel>
+    </textarea>
   </div>
   <button type="submit">Submit</button>
 </form>

@@ -1,3 +1,11 @@
-<div>
-  {{post.created_at | date: "short"}}: {{post.text}}
+<div class="post-container">
+  <div class="post-date">
+    {{post.created_at | date: "short"}}
+  </div>
+  <div class="post-text">
+    {{post.text}}
+  </div>
+  <div class="post-delete-button">
+    <button (click)="onDelete()">Delete</button>
+  </div>
 </div>

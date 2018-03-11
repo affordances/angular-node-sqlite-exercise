@@ -1,0 +1,30 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 350px;
+  margin: 15px;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+textarea {
+  width: 340px;
+  height: 150px;
+  outline: none;
+  margin-bottom: 10px;
+  padding: 5px;
+  resize: none;
+}
+
+button {
+  outline: none;
+  text-align: center;
+  width: 100px;
+  font-size: 15px;
+  padding: 5px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  background-color: green;
+}
