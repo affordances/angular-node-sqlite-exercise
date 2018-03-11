@@ -9,4 +9,4 @@
   </div>
   <button type="submit">Submit</button>
 </form>
-<app-post *ngFor="let post of posts" [post]="post" (refresh)="refreshPosts"></app-post>
+<app-post *ngFor="let post of posts" [post]="post" (refresh)="refreshPosts()"></app-post>

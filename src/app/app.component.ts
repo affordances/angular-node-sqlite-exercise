@@ -15,16 +15,14 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    setInterval(this.refreshPosts(), 500)
+    this.refreshPosts();
   }
 
   refreshPosts() {
     this.http.get('http://localhost:3001/posts')
     .subscribe((data: any) => {
-      console.log("current posts", data.posts);
       this.posts = data.posts;
     });
-    console.log("refreshing...");
   }
 
   onSubmit(form: any, realForm: any): void {
